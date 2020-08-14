@@ -4,7 +4,7 @@ services:
   mongodb:
     image: mongo
     volumes:
-      - ./data/mongo:/data/db
+      - mongodata
     ports:
       - 27017:27017
     container_name: weibo-mongo

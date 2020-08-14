@@ -12,6 +12,12 @@ weibo.txt内容格式为：
 ```
 添加 weibo_id 后，执行 python redis_init.py 进行数据初始化
 
+## Windows 下 docker-compose 启动 mongodb 问题
+    - windows下因为VirtualBox VM来托管Docker守护程序，
+    - VirtualBox用于在主机系统和Docker容器之间共享文件夹的机制与MongoDB使用的内存映射文件不兼容
+    - 所以需要先创建一个volume，然后挂载启动
+    - 原始 - ./data/mongo:/data/db
+
 ## 代理的使用
 在middleware中实现了使用代理的代码
 

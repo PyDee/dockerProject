@@ -85,13 +85,6 @@ ITEM_PIPELINES = {
 # HTTPCACHE_IGNORE_HTTP_CODES = []
 # HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-
-# 配置scrapy-redis调度器
-SCHEDULER = "scrapy_redis.scheduler.Scheduler"
-# 配置url去重
-DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
-# SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.PriorityQueue'
-
 # mongo local config
 MONGO_HOST = "mongodb"  # 主机IP
 MONGO_PORT = 27017  # 端口号
@@ -99,7 +92,7 @@ MONGO_DB = "weibo"  # 库名
 
 # redis local config
 REDIS_HOST = "weibo-redis"
-REDIS_PORT = 6379 
+REDIS_PORT = 6379
 # Redis URL
 REDIS_URL = 'redis://{}:{}'.format(REDIS_HOST, REDIS_PORT)
 
@@ -111,3 +104,19 @@ SCHEDULER_PERSIST = True
 RETRY_TIMES = 20
 
 DOWNLOAD_TIMEOUT = 3
+
+# 配置scrapy-redis调度器
+# SCHEDULER = "scrapy_redis.scheduler.Scheduler"
+# 配置url去重
+# DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
+# SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.PriorityQueue'
+
+
+# scrapy redis 配置 添加布隆过滤器
+SCHEDULER = "scrapy_redis_bloomfilter.scheduler.Scheduler"
+DUPEFILTER_CLASS = "scrapy_redis_bloomfilter.dupefilter.RFPDupeFilter"
+
+# Number of Hash Functions to use, defaults to 6
+BLOOMFILTER_HASH_NUMBER = 6
+# Redis Memory Bit of Bloomfilter Usage, 30 means 2^30 = 128MB, defaults to 30
+BLOOMFILTER_BIT = 30

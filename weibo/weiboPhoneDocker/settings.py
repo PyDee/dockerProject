@@ -61,7 +61,8 @@ RANDOM_UA_TYPE = 'random'
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     'pipelines.WeibophonedockerPipeline': 300,
-    'scrapy_redis.pipelines.RedisPipeline': 301
+    # 会启用defaults.py 中的 PIPELINE_KEY， 将采集结果保存的redis中，此处为关闭
+    # 'scrapy_redis.pipelines.RedisPipeline': 301
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
